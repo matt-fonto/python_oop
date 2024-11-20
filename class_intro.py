@@ -17,7 +17,16 @@ item1_price = 1000
 # 1. Create class
 class Item:
     # __init__: initializes the class with the parameters we passed. init is also called constructor
-    def __init__(self, item_name, price, is_available, quantity):
+    # the constructor is executed during the class instantiation
+    # it's possible to describe the type of argument that we accept in our methods/functions
+    def __init__(self, item_name:str, price:int, is_available:bool, quantity=0):
+        # Run validations to received arguments: we catch possible bugs before going further in the program
+        assert price >= 0, f"Price {price} needs to be greater than 0."
+        assert quantity >= 0, f"Quantity {quantity} needs to be greater than 0."
+
+        # print(f'An instance of "{item_name}" was created')
+        # we dynamically assign the passed arguments to the instantiated class attribute
+        # Attribute assignment in the constructor
         self.item_name = item_name
         self.price = price
         self.is_available = is_available
@@ -38,8 +47,27 @@ class Item:
         return f"Total price is: {total_price}"
 
 # 2. Instantiate an object
-phone = Item('phone',1000, True, 8) # these arguments are passed to the init method
+phone = Item('phone',1000, True, -10) # these arguments are passed to the init method
 tv = Item('tv',5000, True, 2)
 
-print(phone.total_price())
-print(tv.total_price())
+# print(phone.total_price())
+# print(tv.total_price())
+
+""" 
+ Just because we use `Attribute assignment` in the constructor,
+ it doesn't mean that we can't add further attributes to each specific object.
+
+ We can add more attributes after the object is instantiated
+""" 
+
+phone.is_ios = True
+phone.has_front_camera = True
+
+tv.is_lcd = True
+tv.is_smart = True
+
+print(phone.is_ios)
+print(phone.has_front_camera)
+
+print(tv.is_lcd) 
+print(tv.is_smart) 
