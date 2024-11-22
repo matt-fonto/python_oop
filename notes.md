@@ -317,3 +317,45 @@ class Example:
 print(Class.__dict__) # All the attributes for Class level
 print(Object.__dict__) # All the attributes for Instance level
 ```
+
+## Class vs. Static methods
+
+- Class and Static methods are used to define behaviors that aren't tied to a specific instance of the class
+- Even though they could be called from an instance, normally you will call the class and the static methods from the class itself.
+
+### Class method @classmethod
+
+- Receives reference to the class `cls`
+- Operates on the class itself
+- Has access to class attributes via `cls`
+- Modify or interact with class-level data
+
+### Static method @staticmethod
+
+- Does not receive instance,`self`, nor class, `cls`
+- No access to class or instance attributes
+- Static methods are good to do something that has a relationship with the class, but not something that must be unique per instance
+- Behaves like a regular function, but belongs to the class's namespace
+
+```py
+class MyClass:
+    # regular instance method
+    # takes on parameter: self
+    # points to an instance of our class
+    def method(self):
+        return 'instance method', self
+
+    # takes a @classmethod decorator
+    # takes `cls` as a param
+    # points to the class, not the object instance, when the method is called
+    # can't modify object instances
+    @classmethod
+    def classmethod(cls):
+        return 'class method', cls
+
+    # takes no `self`, nor `cls` param
+    # don't modify object nor class state
+    @staticmethod
+    def staticmethod():
+        return 'static method',
+```
