@@ -17,6 +17,7 @@ item1_price = 1000
 # 1. Create class
 class Item:
     discount = 0.8 # class attribute
+    all = [] # to keep all the instances
 
     # __init__: initializes the class with the parameters we passed. init is also called constructor
     # the constructor is executed during the class instantiation
@@ -33,8 +34,10 @@ class Item:
         self.price = price
         self.is_available = is_available
         self.quantity = quantity
-    
 
+        # Actions to execute
+        Item.all.append(self) # add current object to list
+    
     def give_info(self):
         # self: passes the object itself to the method
         # all methods will take a `self`
@@ -55,7 +58,9 @@ class Item:
                     # so a best practice is to write `self.class_attribute` instead of `Class.class_attribute`
         self.price *= self.discount
 
-
+    # magic method to improve print representation
+    def __repr__(self):
+        return f"Item: {self.item_name}, price: {self.price}, is available?: {self.is_available}, quantity: {self.quantity} \n"
 
 # 2. Instantiate an object
 phone = Item('phone',1000, True, 10) # these arguments are passed to the init method
@@ -93,3 +98,7 @@ print(tv.price)
 tv.discount = 0.5 # overrode the class discount
 tv.apply_discount()
 print(tv.price)
+
+print(Item.all)
+
+# 48:42
