@@ -1,9 +1,9 @@
-## Fundaments Python Syntax
+# Fundaments Python Syntax
 
 - Arrays are called lists
 - Objects are called dictionaries
 
-### Variable and data types
+## Variable and data types
 
 ```py
 x = 10 # int
@@ -14,7 +14,7 @@ is_active = True  # bool
 a, b, c = 1, 2, 3 # multiple assignment
 ```
 
-### Control flow
+## Control flow
 
 - Refers to the order in which individual instructions, statements, or blocks of code are executed or evaluated.
 - It determines how a program's logic flows based on conditions, loops, and branching
@@ -24,7 +24,7 @@ a, b, c = 1, 2, 3 # multiple assignment
   - 3. loops (iteration): repeat block of code until a condition is met or no longer valid
   - 4. function calls: jumping to and returning from reusable blocks of code
 
-#### If-else statements
+### If-else statements
 
 ```py
 x = 10
@@ -37,7 +37,7 @@ else:
     print ("x is less than five")
 ```
 
-#### For loops
+### For loops
 
 - Iterate over a range or any iterable (list, tuples, dictionaries)
 
@@ -84,7 +84,7 @@ while count < 5:
     count += 1
 ```
 
-### Functions
+## Functions
 
 ```py
 # function with default parameter
@@ -95,7 +95,7 @@ print(greet("Mateus")) # Hello, Mateus!
 print(greet()) # Hello, World!
 ```
 
-### Lists
+## Lists
 
 - Python's arrays are dynamic and called **lists**
 
@@ -110,7 +110,7 @@ squared = [x**2 for x in range(5)]
 print(squared) # [0, 1, 4, 9, 16]
 ```
 
-### Dictionaries
+## Dictionaries
 
 - Key-value pairs, similar to objects in JS
 - Differently from JS, where we can access object properties with dot notation, in Python we need to use bracket notation
@@ -124,7 +124,7 @@ print(person["name"]) # in python, we can't access dictionary properties with do
 # In Python, dictionaries require the use of bracket notation `person["age"]`
 ```
 
-### Tuples
+## Tuples
 
 - Immutable sequences
 
@@ -135,7 +135,7 @@ print(point[0]) # 1
 x, y = point
 ```
 
-### Sets
+## Sets
 
 - Unordered collections of unique elements
 
@@ -148,7 +148,7 @@ unique_numbers = {1,2,3,3}
 print(unique_numbers)
 ```
 
-### Classes
+## Classes
 
 - Used in OOP
 
@@ -165,7 +165,7 @@ person_1 = Person("Matt", 28)
 print(person.greet())
 ```
 
-### File handling
+## File handling
 
 ```py
 # Write to file
@@ -178,7 +178,7 @@ with open("example.txt". "r") as file:
     print(content)
 ```
 
-### Error handling
+## Error handling
 
 - `try-except` for exception handling
 
@@ -191,7 +191,7 @@ finally:
     print("This will always execute")
 ```
 
-### Importing modiules
+## Importing modiules
 
 - Use built-in or third-party libraries
 
@@ -204,7 +204,7 @@ print(pow(2,3)) # 8.0
 print(pi)
 ```
 
-### List comprehension
+## List comprehension
 
 - Concise way to create or transform a list by applying an expression to each element in an iterable (list, dictionary, set, range, string)
 
@@ -229,7 +229,7 @@ doubled_evens = [num**2 for num in numbers if num % 2 == 0] # [4, 8, 16]
 labels = ["even" if num % 2 == 0 else "odd" for num in numbers]
 ```
 
-### List vs. Tuple
+## List vs. Tuple
 
 - Both data structures store collection of items
 
@@ -240,3 +240,16 @@ labels = ["even" if num % 2 == 0 else "odd" for num in numbers]
 | performance       | faster     | slower                     |
 | use case          | fixed data | dynamic or modifiable data |
 | methods available | limited    | more extensive             |
+
+## Iterables in Python
+
+- Iterable: object that can return its elements one at a time
+- list, tuple, set, dict, str
+
+```py
+from collections.abc import Iterable
+
+print(isinstance([1,2,3], Iterable)) # True: list
+print(isinstance((1,2,3), Iterable)) # True: tuple
+print(isinstance(123, Iterable)) # False: int
+```
