@@ -1,0 +1,6 @@
+feature,tuple,list
+definition,(), []
+mutability, immutable, mutable
+performance, faster, slower
+use case, fixed data, dynamic or modifiable data
+methods available, limited, more extensive
