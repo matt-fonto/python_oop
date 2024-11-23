@@ -5,13 +5,95 @@
 
 ## Variable and data types
 
+- variable: bucket that stores some data
+- Python uses snake case, not camel case
+  - python_variable | jsVariable
+
 ```py
 x = 10 # int
 y = 3.14 # float
-name = 'Matt' # str
+name = 'Matt' # str => we can use single or double quotes
 is_active = True  # bool
 
 a, b, c = 1, 2, 3 # multiple assignment
+```
+
+## Arithmetic operations
+
+- `**`: exponent operator. We raise a number to the power of another number
+- `//`: floor division. Gives us the integer result of the division. not the float. Removes the decimal points, and gives us the base int.
+- `%`: modulus. Gives us the remainder of the division
+- BEDMAS: Represents the order of operations. Brackets, exponents, division, multiplication, addition, subtraction
+
+```py
+result = base ** exponent
+
+print(2**3) # 2 * 2 * 2 => 8
+print(5**4) # 5 * 5 * 5 * 5 => 625
+```
+
+## Input vs Output
+
+```py
+print(variable | result) # output
+
+user_name = input('Name: ') # returns a string
+
+def say_hello(name:str):
+    return f"Hello, {name}"
+
+print(say_hello(user_name))
+
+num = input('number: ')
+print(int(num) + 10) # if we don't convert to int or float, it will throw error
+```
+
+## String methods
+
+- `.method()`
+
+```py
+hello_upper = 'hello'.upper()
+hello_lower = 'hello'.lower()
+
+# Important string methods
+.upper()
+.lower()
+.capitalize()
+.count('ll') # returns the ocorrences of a substring
+```
+
+## Conditional operators
+
+- They return `bool`
+- We can write expressions on both sides of the conditional operators, which will be resolved first, then compared
+
+```py
+==  #equality
+!=  #inequality
+> # greater than
+>= # greater than or equal to
+< # less than
+<= # less than or equal to
+```
+
+### Chained conditions
+
+- Terminology: operands or expressions
+- Operands: values or expressions being evaluated by the logical operators
+- Expressions: more general term, which can be simple values (True, False) or more complex evaluations (x > 5)
+
+```py
+x and y # `x` and `y` are operands
+
+# both operands/expressions need to be true
+and # right and left side expressions need to be true
+
+# only one needs to be true
+or # either right or left side need to true
+
+# neither can be true
+not # neither right nor left side can be true
 ```
 
 ## Control flow
