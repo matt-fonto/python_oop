@@ -119,6 +119,8 @@ else:
     print ("x is less than five")
 ```
 
+- Python doesn't have a switch statement as JS, C and Java
+
 ### For loops
 
 - Iterate over a range or any iterable (list, tuples, dictionaries)
@@ -131,8 +133,23 @@ for i in range(5):
 # Loop list
 numbers = [1, 2, 3, 4, 5]
 # for item in iterable:
+# directly iterates over the elements, not the index
+# each number refers to an element in the list
+# useful when we need only the value
 for number in numbers:
     print(number)
+
+# for i in range(len(iterable))
+# go through the indeces [0, 1, 2, 3, ...]
+# access each elements via its index numbers[i]
+# useful when we need both the value and the index
+for i in range(len(numbers)):
+    print(numbers[i])
+
+# other way to achieve this is to use enumberate
+# for i, value in enumarate(iterable)
+for i, element in enumerate(numbers):
+    print(i, element)
 
 # Inverted loop list: we just use the `reversed` function
 for number in reversed(numbers):
@@ -156,11 +173,15 @@ people = [
 ]
 for person in people:
     print(f"{person['name']} is {person['age']} years old and is a {person['profession'].lower()}")
+```
 
+### While loop
 
-# While loop
+```py
+while condition == True:
+    do something
+
 count = 0
-
 while count < 5:
     print(count)
     count += 1
@@ -175,7 +196,14 @@ def greet(name="World"):
 
 print(greet("Mateus")) # Hello, Mateus!
 print(greet()) # Hello, World!
+
+def func(x,y):
+    return x + y, x - y, x * y, x / y # returns a tuple
+
+sum_result, sub_result, mult_result, div_result = func(10, 20) # unpacking the tuple
 ```
+
+### Unpack operators - \*args and \*\*kwargs
 
 ## Lists
 
@@ -192,6 +220,25 @@ squared = [x**2 for x in range(5)]
 print(squared) # [0, 1, 4, 9, 16]
 ```
 
+- The values inside the list are stored by reference, so we can change them
+
+```py
+x = [1, 'hey', False]
+x[0] = 'jelly'
+print(x)
+```
+
+## Tuples
+
+- Immutable sequences
+
+```py
+point = (1,2)
+print(point[0]) # 1
+
+x, y = point
+```
+
 ## Dictionaries
 
 - Key-value pairs, similar to objects in JS
@@ -204,17 +251,6 @@ person = {"name":"Matt", "age":28}
 print(person["name"]) # in python, we can't access dictionary properties with dot notation `person.name`, as we would in JS
 
 # In Python, dictionaries require the use of bracket notation `person["age"]`
-```
-
-## Tuples
-
-- Immutable sequences
-
-```py
-point = (1,2)
-print(point[0]) # 1
-
-x, y = point
 ```
 
 ## Sets
