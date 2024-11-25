@@ -203,7 +203,7 @@ def func(x,y):
 sum_result, sub_result, mult_result, div_result = func(10, 20) # unpacking the tuple
 ```
 
-### Unpack operators - \*args and \*\*kwargs
+### Unpack operators - `*args` and `**kwargs`
 
 ## Lists
 
@@ -301,6 +301,13 @@ with open("example.txt". "r") as file:
 - `try-except` for exception handling
 
 ```py
+try:
+    # code
+except:
+    # certain condition
+finally:
+    # always runs
+
 try:
     result = 10/0
 except ZeroDivisionError as e:
