@@ -6,10 +6,11 @@ class Item:
     all = [] 
 
     def __init__(self, item_name:str, price:int, is_available:bool, quantity=0):
-        # validate
+        # Run validations
         assert price >= 0, f"Price {price} can't be a negative number."
         assert quantity >= 0, f"Quantity {quantity} can't be a negative number."
 
+        # Assign params to instance 
         # instance attributes
         self.item_name = item_name
         self.price = price
@@ -17,8 +18,9 @@ class Item:
         self.quantity = quantity
 
         # actions to execute
-        Item.all.append(self) # add current object to list
+        Item.all.append(self) # every time we init, we append the items to the list of items
     
+    # instance method
     def give_info(self):
         return (
             f"{self.item_name} costs {self.price}. "

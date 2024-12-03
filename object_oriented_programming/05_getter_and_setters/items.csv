@@ -1,0 +1,11 @@
+item_name,price,is_available,quantity
+Phone,1036,true,1
+Laptop,673,true,4
+Tablet,429,false,0
+Monitor,70,false,0
+Mouse,1640,true,3
+Keyboard,555,true,2
+Headphones,529,true,2
+Charger,1050,false,0
+Speaker,664,false,0
+Smartwatch,1657,true,10
