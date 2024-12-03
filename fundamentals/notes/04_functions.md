@@ -194,3 +194,107 @@ def modify_global():
 modify_global()
 print(x) # 20
 ```
+
+## Lambda & Higher order functions
+
+- Lambda functions are anonymous, but we can assign them to a variable
+- Lambda func is normally used inside another function
+- Lambda takes N params and returns operation
+
+```py
+# variable = lambda param: operation
+# It's optional to save the lambda into a variable
+def squared(num): return num * num # => normal function, one-line function
+
+squared_lambda = lambda num: num * num
+add_two = lambda num: num + 2
+sum = lambda a,b: a + b
+```
+
+### Higher order functions (HOF)
+
+- Functions that either/both:
+
+1. Take other functions as arguments
+2. Return a function as their result
+
+- Benefits of HOF
+
+1. Reusability: functions can be reused in different contexts by passing different callbacks
+2. Abstraction: abstracts away details of operation
+3. Functional programming: allows functional programming patterns, such as composition and chaining
+
+- Important built-in higher-order functions:
+
+1. `map`: applies a function to each array item
+2. `filter`: filters elements based on a condition
+3. `reduce`: aggregates elements based on a reducer function
+
+- Higher order functions take a callback function, which can be a lambda function
+- In Python, we can't directly declare the function inside the map, as we'd in JS
+- So, in Python, we either declare it outside and reference it inside the HOF or we use the lambda
+
+```js
+// This is okay in JS
+const doubled = numbers.map(function (num) {
+  return num * 2;
+});
+```
+
+```py
+def double(num):
+    return num * 2
+
+# they are equal
+doubled = map(double, numbers)
+doubled = map(lambda num: num * 2, numbers)
+```
+
+```py
+# Function as argument
+def apply_operation(a, b, operation):
+    return operation(a, b)
+
+sum = lambda x, y: x + y
+multiply = lambda x, y: x * y
+
+# Function as return value
+def create_multiplier(multiplier):
+    return lambda num: num * multiplier
+
+double = create_multiplier(2)
+triple = create_multiplier(3)
+
+double(5) # 10
+triple(5) # 15
+
+# Built-in HOF
+numbers = [1,2,3,4,5]
+
+# map(func, array) => returns a map object. To see the results as list, we normally convert it to a list with `list(map())`
+# Instead of having a loop, we simply use map
+doubled = list(map(lambda num: num * 2, numbers))
+
+def get_double(arr):
+    # loop
+    result = []
+    for item in arr:
+        result.append(item * 2)
+    return result
+
+    # list comprehension
+    return [item * 2 for item in arr]
+
+
+doubled_with_loop = get_double(numbers)
+
+evens = filter(lambda num: num % 2 == 0, numbers)
+sum = numbers.reduce(lambda acc, num: acc + num, 0, numbers)
+
+from functools import reduce
+
+# Even though we can use reduce to get the total, Python has a `sum(arr)` function, which does the same
+# reduce(func, arr, starting_num<optional>)
+total = reduce(lambda acc, curr: acc + cur, numbers)
+total_two = sum(numbers)
+```

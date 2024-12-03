@@ -1,6 +1,41 @@
-# Collections
+## Array/List methods Python
 
-## Array methods Python
+The methods are:
+
+- Adding:
+
+  - append: adds end of the list
+  - extend: adds all elements from iterable to list
+  - insert: inserts at specified index:
+
+- Removing
+
+  - pop: removes and returns element at index. Default last.
+  - clear: removes all elements
+  - remove: removes first occurence item
+
+- Finding
+
+  - index: returns index of the first occorrence of `item`. Raises `ValueError` if no `item` is found
+  - count: returns number of occurrences of `item`
+
+- Sorting & Reversing
+
+  - sort: sorts the list in place
+  - reverse: reverses the list
+
+- Miscellaneous
+  - copy: returns shallow copy of the list
+  - len: not a method, but very common. Returns the number of elements in the list
+
+#### Quick tip on shift and unshift
+
+- In JS, we have the methods, shift and unshift.
+  - Shift: Removes item at the beginning (position 0) and returns it
+  - Unshift: Adds N items at the beginning (position 0) of the array
+- In Python, we could use :
+  - pop(0) as the equivalent of shift
+  - insert(0, value) as the equivalent of unshift
 
 ### 1. Adding elements
 
@@ -76,65 +111,4 @@ sliced = [start:stop:step] # similar to the range
 [2:] # start at 2, stop at end
 [::-1] # reverse  a list
 [::2] # step by two
-```
-
-## Sets
-
-- Unordered collection of unique elements
-- We only care if something is there or not
-- Set is extremely fast for lookups, additions and removals
-
-```py
-x = set() # creating an empty set
-s = {} # this actually creates a dictionary. If you populate, then it's ok
-s = {4, 32, 4, 2} # creating a populated set
-
-s.add()
-s.remove()
-print(33 in s) # O(1) -> constant time, instead of O(n), which would be a in list
-```
-
-## Dictionaries: hash table, map, object
-
-- Uses a hash, so it's very fast.
-
-```py
-x = {'key': value}
-x['key2'] = another_value
-```
-
-### Dictionary methods
-
-```py
-print(person["name"]) # use it when we're sure the certain key exists
-print(person.get('name')) # use it when unsure if certain key exists. safe retrieve. If key doesn't exist, doesn't throw error as the bracket notation would, and returns None
-
-person.keys() # get all dict keys
-person.values() # get all dict values
-person.items() # get all key:value pair as a tuple
-person.update() # updates values and overrides the previous ones
-person.pop(key) # removes and returns the value of the specified key
-
-del person['key'] # removes the key from the dict
-```
-
-### Loop over dictionary
-
-```py
-for key, value in our_dict.items():
-    print(key, value)
-```
-
-## Comprehensions
-
-```py
-# list comprehension: we define a for loop inside the iterable
-# List = [expression(i) for i in another_list if filter(i)]
-x = [x for x in range(5)]
-
-# num % 2 == 0: even numbers
-# num % 2 != 0: odd numbers
-
-lst = [x for x in range(1,11) if x % 2 != 0]
-print(lst)
 ```
