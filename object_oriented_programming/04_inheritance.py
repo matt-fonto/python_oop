@@ -56,9 +56,21 @@ class Item:
         return False
 
     def __repr__(self):
-        return f"Item: {self.item_name}, price: {self.price}, is available?: {self.is_available}, quantity: {self.quantity} \n"
+        return f"{self.__class__.__name__}: {self.item_name}, price: {self.price}, is available?: {self.is_available}, quantity: {self.quantity} \n"
 
 # inheriting. Item parent, Phone child
 class Phone(Item):
-    def __init__
+    def __init__(self, item_name: str, price: int, is_available:bool, quantity=0, broken_phones=0):
+        # call the parent class constructor with super
+        super().__init__(item_name, price, is_available, quantity)
+        assert broken_phones >= 0, f"Broken phones {broken_phones} can't be a negative number"
+        self.broken_phones = broken_phones
 
+item1 = Phone('item 1', 400, True, 3, 0)
+print(item1.all)
+
+phone1 = Phone('iphone 16', 1000, True, 10, 0)
+print(phone1.item_name)
+print(phone1.total_price())
+
+print(phone1.all)

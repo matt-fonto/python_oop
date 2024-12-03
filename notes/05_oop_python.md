@@ -54,6 +54,7 @@ print(account.withdraw(120)) # 150 - 120 = 30
 
 - A way to create a new class that is a modified version of an existing one
 - The child class inherits attributes and methods from parent
+- We use `super` method in the children to inherit all the parent's attributes, this way, we don't need to use `__init__()` repeating the attributes
 
 ```py
 class Animal:
