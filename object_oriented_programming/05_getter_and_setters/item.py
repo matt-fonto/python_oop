@@ -14,7 +14,7 @@ class Item:
         # Assign params to instance 
         # instance attributes
         self._item_name = item_name # read-only attribute
-        self.price = price
+        self._price = price
         self.is_available = is_available
         self.quantity = quantity
 
@@ -33,24 +33,45 @@ class Item:
     
     @item_name.setter
     def item_name(self, value):
-        self._item_name = value
+        if len(value) < 3:
+            raise Exception("Too short")
+        elif len(value) > 10:
+            raise Exception("Too long")
+        else:
+            self._item_name = value
+
+    @property
+    def price(self):
+        return self._price
     
+    @price.setter
+    def price(self, value):
+        if value < 0:
+            raise ValueError("Price can't be negative")
+        self._price = value
+    
+    def apply_discount(self):
+        # use setter
+        self.price *= self.discount
+
+    def apply_increment(self, value):
+       self.price += value # python doesn't accept assignment on the return
+       return self.price
+
     # instance method
     # method is dependent on both instance and class
     def give_info(self):
         availability = "available" if self.is_available else "not available"
 
         return (
-            f"{self._item_name} costs {self.price}. "
+            # we use self.item_name because we use the getter, removing the need of _item_name. Same thing with the price
+            f"{self.item_name} costs {self.price}. "
             f"It is currently {availability}. "
             f"Quantity is: {self.quantity}"
         )
     
     def total_price(self):
       return self.price * self.quantity
-
-    def apply_discount(self):
-        self.price *= self.discount
 
     # class-level data
     # bound to the class, not the object
@@ -69,8 +90,8 @@ class Item:
 
         for item in items:
             Item(
-                _item_name=item.get('item_name'),
-                price=float(item.get('price')),
+                item_name=item.get('item_name'), # use setter 
+                price=float(item.get('price')), # use setter
                 is_available=item.get('is_available') == 'True',
                 quantity=int(item.get('quantity')))
     
@@ -88,7 +109,7 @@ class Item:
             return False
         
     def __repr__(self):
-        return f"{self.__class__.__name__}: {self._item_name}, price: {self.price}, is available: {self.is_available}, quantity: {self.quantity} \n"
+        return f"{self.__class__.__name__}: {self.item_name}, price: {self.price}, is available: {self.is_available}, quantity: {self.quantity} \n"
         
     
     

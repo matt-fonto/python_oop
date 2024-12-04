@@ -29,23 +29,73 @@ print(my_dog.bark())
 
 ### 3. Encapsulation
 
+- Restrict direct access/update to some attributes. For that we use the getters and setters
 - Hide implementation details and provide public interface
 - In Python, private attributes are denoted with a single or double underscore `_attribute`, `__attribute`
+
+#### Single vs. Double Underscore
+
+- Single underscore:
+
+  - Purpose: Indicates the attribute is intended to be protected (used internally or by subclasses), but it's not strictly private
+  - Behavior: Not enforced by Python, it's a convention
+  - Use case: For attributes that shoudn't be accessed or set directly, but can be accessed in subclasses
+
+  ```py
+    class Example:
+        def __init__(self):
+            self._protected_attribute = 42 # Internal use only
+
+    obj = Example()
+    print(obj._protected_attribute) # Accessible, but breaking convention
+  ```
+
+- Double underscore:
+
+  - Purpose: Triggers `name mangling`, what makes the attribute difficult to access directly (intended for strong encapsulation and avoiding name collisions in subclasses)
+  - Behavior: Python renames the attribute internally to `__ClassName__attribute`
+  - Use case: Attributes that are strictly private and not accessible even in subclasses
+
+  ```py
+    obj = Example()
+    print(obj.__strictly_priv_att) # AttributeError
+    print(obj.__Example__strictly_priv_att) # Accessible with name mangling
+  ```
+
+  - Which one to use?
+    1. Single underscore (`_attribute`):
+       - Indicate attribute is internal or protect, but does't need strict privacy
+       - Easier to debug and less restrictive
+    2. Double underscore (`__attribute`):
+       - Strong encapsulation and want to avoid accidental name collision in subclasses
+       - Use sparingly because name mangling can complicate debugging
 
 ```py
 class Account:
     def __init__(self, balance):
-        self.__balance = balance
+        self._balance = balance
+
+    @property # get
+    def balance(self)"
+        return self._balance
+
+    @balance.setter # set
+    def balance(self, value):
+        if value < 0:
+            raise ValueError("Balance cannot be negative")
+        self._balance = value
 
     def deposit(self, amount):
-        self.__balance += amount
-        return self.__balance
+        self.balance += amount # use setter
+        return self.balance
 
     def withdraw(self, amount):
-        self.__balance -= amount
-        return self.__balance
+        self.balance -= amount # setter
+        return self.balance
 
 account = Account(100)
+
+account._balance = 150 # it won't work
 print(account.deposit(50)) # 100 + 50 = 150
 print(account.withdraw(120)) # 150 - 120 = 30
 ```
@@ -87,6 +137,8 @@ for animal in animals:
 ### Abstraction
 
 - Focus on essential details while hiding unnecessary implementation. Achieved using abstract base classes (ABCs)
+- Shows necessary attributes and hides unnecessary information
+- Hide unnecessary details from the user, meaning devs who will use our class to instantiate their objects
 
 ```py
 from abc import ABC, abstractmethod
