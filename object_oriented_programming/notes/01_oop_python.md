@@ -119,9 +119,11 @@ dog = Dog()
 print(dog.speak()) # Woof!
 ```
 
-### Polymorphism
+### 5. Polymorphism
 
 - Objects can be treated as instances of their parent class, allowing for flexibility and code reuse
+- Different scenarios that we call the same entity
+  - Ex: the `len()` function, if used with strings returns the numbers of characters, if used with a list, returns the number of elements
 
 ```py
 class Cat(Animal):
@@ -134,7 +136,7 @@ for animal in animals:
     print(animal.speak())
 ```
 
-### Abstraction
+### 6. Abstraction
 
 - Focus on essential details while hiding unnecessary implementation. Achieved using abstract base classes (ABCs)
 - Shows necessary attributes and hides unnecessary information
